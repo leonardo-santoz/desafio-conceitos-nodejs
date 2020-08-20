@@ -4,8 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const { json } = require('express');
 
-// const { v4: uuid } = require('uuid');
-
 const app = express();
 
 app.use(express.json());
@@ -21,7 +19,6 @@ function idIsValid(request, response, next) {
 
   next();
 }
-
 
 app.get("/repositories", (request, response) => {
   return response.json(repositories);
@@ -44,7 +41,6 @@ app.put("/repositories/:id", idIsValid, (request, response) => {
   const { title, url, techs } = request.body;
 
   const repositoryIndex = repositories.findIndex(repository => repository.id === id);
-
 
   if (repositoryIndex < 0)
     return response.status(400).send('Ooops... repository not found :(')
